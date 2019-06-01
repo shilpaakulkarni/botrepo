@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+</head>
+<style>
+.container {
+  position:relative;
+  width:100%;
+  height:20px;
+}
+
+/* Make the image responsive */
+.container img {
+  width: 100%;
+  height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+.container .btn {
+  position: relative;
+  top: 100%;
+  left: 7%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #007acc;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.container .btn:hover {
+  background-color: #3498DB;
+}
+</style>
+<body onload = "loadChat(event)">
+    
+	<div class="container">
+		<img src="https://i.ibb.co/8rfPjLd/HomePage.png" width="100%" alt="Mobile cloud enterprise">
+		<button class="btn" onclick="clearChat(event)">Clear Chat</button>
+    </div>       
+<script>
+  !function(e,n,t,r){
+  function o(){try{var e;if((e="string"==typeof this.response?JSON.parse(this.response):this.response).url){var t=n.getElementsByTagName("script")[0],r=n.createElement("script");r.async=!0,r.src=e.url,t.parentNode.insertBefore(r,t)}}catch(e){}}var s,p,a,i=[],c=[];e[t]={init:function(){s=arguments;var e={then:function(n){return c.push({type:"t",next:n}),e},catch:function(n){return c.push({type:"c",next:n}),e}};return e},on:function(){i.push(arguments)},render:function(){p=arguments},destroy:function(){a=arguments}},        e.__onWebMessengerHostReady__=function(n){if(delete e.__onWebMessengerHostReady__,e[t]=n,s)for(var r=n.init.apply(n,s),o=0;o<c.length;o++){var u=c[o];r="t"===u.type?r.then(u.next):r.catch(u.next)}p&&n.render.apply(n,p),a&&n.destroy.apply(n,a);for(o=0;o<i.length;o++)n.on.apply(n,i[o])};var u=new XMLHttpRequest;u.addEventListener("load",o),u.open("GET","https://WebChannelOAuth-gse00016029.uscom-central-1.oraclecloud.com/dist/loader.json",!0),u.responseType="json",u.send()}(window,document,"Bots");
+var appid = '5cd90fc6656b360010115743';
+var images_URI="https://botimageuploadomce-gse00016029.uscom-central-1.oraclecloud.com:443";
+   
+		Bots.init({ appId: appid,
+			businessName: 'ERP Digital Assistant',
+        introductionText: 'Mobile Cloud Enterprise',
+       businessIconUrl: images_URI+'/Images/WebWidget/BusinessImage.png',
+        buttonIconUrl: images_URI+'/Images/WebWidget/ButtonIcon.png',
+        backgroundImageUrl: images_URI+'/Images/WebWidget/bg.png',
+			customColors: {
+				brandColor: '286090',
+			},
+			customText: {
+				headerText: 'Hi there, How can we help?'
+			}
+		  });
+</script>
+
+<script>
+    Smooch.init({appId: '5cd90fc6656b360010115743'}).then(function() {
+        // Your code after init is complete
+    });
+
+function loadChat(e){
+    e.preventDefault();
+    console.log('Init Bots SDK');
+    var appId = '5cd90fc6656b360010115743';
+    initBots('5cd90fc6656b360010115743')
+        .then(function () {
+            console.log("init complete");
+            document.getElementById("loader").style.display = "none";
+            Bots.open();
+            document.getElementById("openChatButton").setAttribute("disabled", true)
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+}
+
+function clearChat(e){
+    e.preventDefault();
+    var keys = Object.keys(localStorage);
+    for(var i = 0; i < keys.length; i++){
+        if(keys[i] === '5cd90fc6656b360010115743'){
+            continue;
+        }
+        localStorage.removeItem(keys[i]);
+    }
+    location.reload();
+}
+
+</script>
+</html>
